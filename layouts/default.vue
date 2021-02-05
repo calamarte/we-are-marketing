@@ -10,8 +10,12 @@
         <!-- Lang Selector -->
         <div class="select">
           <select class="flat">
-            <option value="es">ES</option>
-            <option value="en">EN</option>
+            <option value="es">
+              ES
+            </option>
+            <option value="en">
+              EN
+            </option>
           </select>
           <i class="material-icons"> arrow_drop_down </i>
         </div>
@@ -23,7 +27,7 @@
 
     <footer class="vertical--center">
       <caption>2020 © We are Marketinga</caption>
-      <Logo/>
+      <Logo />
     </footer>
   </div>
 </template>
@@ -44,7 +48,6 @@
     height: 100%;
   }
 }
-
 
 header {
   width: 100%;
@@ -78,7 +81,6 @@ header {
 main {
   background-color: $background-color;
 }
-
 
 footer{
   position: fixed;
