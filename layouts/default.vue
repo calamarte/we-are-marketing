@@ -21,7 +21,7 @@
         </div>
       </div>
     </header>
-    <main>
+    <main class="center">
       <Nuxt />
     </main>
 
@@ -33,6 +33,10 @@
 </template>
 
 <style lang="scss" scoped>
+
+$headerHeight: 50px;
+$footerHeight: 100px;
+
 .flat {
   border: none;
   outline: none;
@@ -51,7 +55,7 @@
 
 header {
   width: 100%;
-  height: 50px;
+  height: $headerHeight;
   background-color: $primary;
   display: flex;
   justify-content: space-around;
@@ -80,13 +84,15 @@ header {
 
 main {
   background-color: $background-color;
+  width: 100%;
+  height: calc(100% - #{$headerHeight + $footerHeight});
 }
 
 footer{
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 100px;
+  height: $footerHeight;
 
   background-color: $primary;
   display: flex;

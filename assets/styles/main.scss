@@ -5,13 +5,26 @@
 
 //Global variables
 @import './variables';
-@import './help-clasess';
+
+//Help classes
+@import './help-classes';
+
 
 *{
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
+
+
+// Windows size (Nuxt hack)
+div#__nuxt,
+#__layout,
+#__layout > div,
+#app, html, body {
+  @extend .full-size;
+}
+
 
 body{
     background-color: $secondary;

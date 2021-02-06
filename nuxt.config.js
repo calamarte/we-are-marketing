@@ -11,7 +11,9 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { name: 'author', content: 'Jose Navarro Garbayo' },
+      { name: 'keywords', content: 'HTML,CSS,JavaScript,Vue,SASS,JEST,Entelgy' },
+      { hid: 'description', name: 'description', content: 'Prueba técnica para Entelgy' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -27,7 +29,7 @@ export default {
   styleResources: {
     scss: [
       '~/assets/styles/_variables.scss',
-      '~/assets/styles/_help-clasess.scss'
+      '~/assets/styles/_help-classes.scss'
     ]
   },
 
