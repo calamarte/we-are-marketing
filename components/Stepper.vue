@@ -8,13 +8,14 @@
           :key="index"
           class="step"
           :class="{
-            previous: index < current.index,
-            current: index === current.index,
-            next: index > current.index
+            previous: position(index) === 'previous',
+            current: position(index) === 'current',
+            next: position(index) === 'next'
           }"
         >
           <div class="step--index horizontal--center">
-            {{ index+1 }}
+            <span v-if="position(index) !== 'previous'">{{ index+1 }}</span>
+            <span v-else class="material-icons">done</span>
             <caption>{{ step }}</caption>
           </div>
           <div v-if="index < steps.length -1" :style="{width: splitterWidth}" class="step--splitter" />
@@ -59,6 +60,22 @@ export default {
     this.current.value = this.steps[0]
   },
   methods: {
+    // Devuelve la posición imprecisa relativa a this.current
+    // ['previous', 'current', 'next']
+    position (index) {
+      if (index < this.current.index) {
+        return 'previous'
+      }
+
+      if (index === this.current.index) {
+        return 'current'
+      }
+
+      if (index > this.current.index) {
+        return 'next'
+      }
+    },
+
     next () {
       if (this.current.index < this.steps.length - 1) {
         const index = ++this.current.index
@@ -98,31 +115,32 @@ export default {
   display: flex;
   align-items: baseline;
 
-  &.current{
+  &.previous > .step--index{
+    background-color: $positive;
 
-    .step--index{
-      color: $primary;
-      > caption{
-        color: initial;
-      }
+    > span{
+      color: white;
     }
-
   }
 
-  &.next{
-      .step--index{
+  &.current >.step--index > span{
+      color: $primary;
+  }
+
+  &.next > .step--index{
         $borderSize: 2px;
 
-        color: $secondary;
-        background-color: transparent;
+        background-color: white;
         border: $borderSize solid $secondary;
         padding: $indexPadding - $borderSize 0;
 
+        > span{
+          color: $secondary;
+        }
+
         > caption{
-          color: initial;
           opacity: .5;
       }
-    }
   }
 
   &--index{
