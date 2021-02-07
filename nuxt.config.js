@@ -23,6 +23,7 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '~/assets/fonts.css',
+    '~/node_modules/animate.css/animate.min.css', // CSS animations lib
     '~/assets/styles/main.scss'
   ],
 

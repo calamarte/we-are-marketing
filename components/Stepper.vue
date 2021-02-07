@@ -10,15 +10,22 @@
           :class="{
             previous: position(index) === 'previous',
             current: position(index) === 'current',
-            next: position(index) === 'next'
+            next: position(index) === 'next',
           }"
         >
           <div class="step--index horizontal--center">
-            <span v-if="position(index) !== 'previous'">{{ index+1 }}</span>
+            <span v-if="position(index) !== 'previous'">{{ index + 1 }}</span>
             <span v-else class="material-icons">done</span>
-            <caption>{{ step }}</caption>
+            <caption>
+              {{ step }}
+            </caption>
           </div>
-          <div v-if="index < steps.length -1" :style="{width: splitterWidth}" class="step--splitter" />
+
+          <div
+            v-if="index < steps.length - 1"
+            :style="{ width: splitterWidth }"
+            class="step--splitter"
+          />
         </div>
       </div>
     </div>
@@ -26,7 +33,18 @@
     <!-- Body -->
     <div class="stepper--body" :class="bodyStyle">
       <div v-for="(step, index) in steps" :key="index">
-        <slot v-if="step === current.value" :name="`step-${index+1}`" :step="step" :move="{next: next, previous: previous}" />
+        <transition
+          name="move"
+          enter-active-class="animate__animated animate__bounceIn"
+        >
+          <div v-if="step === current.value" :key="'step-container-' + index">
+            <slot
+              :name="`step-${index + 1}`"
+              :step="step"
+              :move="{ next: next, previous: previous }"
+            />
+          </div>
+        </transition>
       </div>
     </div>
   </div>
@@ -90,13 +108,35 @@ export default {
       }
     }
   }
-
 }
 </script>
 
 <style lang="scss" scoped>
+$indexPadding: 10px;
 
-.stepper{
+@mixin current-index{
+  > span {
+    color: $primary;
+  }
+}
+
+@mixin next-index {
+  $borderSize: 2px;
+
+  background-color: white;
+  border: $borderSize solid $secondary;
+  padding: $indexPadding - $borderSize 0;
+
+  > span {
+    color: $secondary;
+  }
+
+  > caption {
+    opacity: 0.5;
+  }
+}
+
+.stepper {
   min-width: 300px;
   padding: 10px;
 
@@ -104,73 +144,62 @@ export default {
     min-height: 100px;
   }
 
-  &--body{
+  &--body {
     min-height: 300px;
   }
 }
 
-.step{
+.step {
   $indexPadding: 10px;
 
   display: flex;
   align-items: baseline;
 
-  &.previous > .step--index{
+  &.previous > .step--index {
     background-color: $positive;
 
-    > span{
+    > span {
       color: white;
     }
   }
 
-  &.current >.step--index > span{
-      color: $primary;
+  &.current > .step--index {
+    @include current-index;
   }
 
-  &.next > .step--index{
-        $borderSize: 2px;
-
-        background-color: white;
-        border: $borderSize solid $secondary;
-        padding: $indexPadding - $borderSize 0;
-
-        > span{
-          color: $secondary;
-        }
-
-        > caption{
-          opacity: .5;
-      }
+  &.next > .step--index {
+    @include next-index;
   }
 
-  &--index{
-        width: 40px;
-        height: 40px;
-        background: $secondary;
-        border-radius: 100%;
-        opacity: .8;
+  &--index {
+    width: 40px;
+    height: 40px;
+    background: $secondary;
+    border-radius: 100%;
+    opacity: 0.8;
 
-        text-align: center;
-        white-space: nowrap;
+    text-align: center;
+    white-space: nowrap;
 
-        padding: $indexPadding 0;
-        margin-bottom: 60px;
+    padding: $indexPadding 0;
+    margin-bottom: 60px;
 
-        flex-wrap: wrap;
+    flex-wrap: wrap;
 
-        > caption{
-          margin-top: 20px;
-          text-transform: uppercase;
-          opacity: .8;
-        }
+    > caption {
+      margin-top: 20px;
+      text-transform: uppercase;
+      opacity: 0.8;
     }
+  }
 
-    &--splitter{
-      height: 1px;
-      background-color: black;
-      border-radius: 10px;
-      opacity: .2;
-      margin: 0 20px;
-    }
+  &--splitter {
+    height: 1px;
+    background-color: black;
+    border-radius: 10px;
+    opacity: 0.2;
+    margin: 0 20px;
+  }
+
 }
 </style>
