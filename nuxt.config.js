@@ -2,6 +2,10 @@ export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
+  server: {
+    host: '0' // default: localhost
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'we-are-marketing',
@@ -30,7 +34,7 @@ export default {
   styleResources: {
     scss: [
       '~/assets/styles/_variables.scss',
-      '~/assets/styles/_help-classes.scss'
+      '~/assets/styles/_inherance.scss'
     ]
   },
 

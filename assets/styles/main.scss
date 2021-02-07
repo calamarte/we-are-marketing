@@ -30,3 +30,34 @@ body{
     background-color: $secondary;
     font-family: 'Roboto', sans-serif;
 }
+
+
+label{
+    font-size: .8em;
+}
+
+input[type=text]{
+    width: 100%;
+    border: 2px solid $background-color;
+    outline: none;
+    border-radius: none;
+    padding: 1em;
+
+    &:focus{
+        border-color: $secondary;
+    }
+}
+
+input[type=button],button{
+    padding: 7px;
+    color: $primary;
+    background-color: $secondary;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+
+    &:hover{
+        box-shadow: 0px 15px 20px $shadow;
+        transform: translateY(-2px);
+    }
+}

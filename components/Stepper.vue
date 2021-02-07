@@ -1,5 +1,5 @@
 <template>
-  <div class="stepper">
+  <div class="stepper full-size">
     <!-- Header -->
     <div class="stepper--header center">
       <div class="center">
@@ -9,12 +9,22 @@
           class="step"
           :class="{
             previous: position(index) === 'previous',
-            current: position(index) === 'current',
             next: position(index) === 'next',
           }"
         >
-          <div class="step--index horizontal--center">
-            <span v-if="position(index) !== 'previous'">{{ index + 1 }}</span>
+          <!-- Current Index Animated -->
+          <transition name="move" enter-active-class="animate__animated animate__bounceIn">
+            <div v-if="position(index) === 'current'" class="step--index horizontal--center">
+              <span>{{ index + 1 }}</span>
+              <caption>
+                {{ step }}
+              </caption>
+            </div>
+          </transition>
+
+          <!-- Rest Index -->
+          <div v-if="position(index) !== 'current'" class="step--index horizontal--center">
+            <span v-if="position(index) === 'next'">{{ index + 1 }}</span>
             <span v-else class="material-icons">done</span>
             <caption>
               {{ step }}
@@ -32,18 +42,18 @@
 
     <!-- Body -->
     <div class="stepper--body" :class="bodyStyle">
-      <div v-for="(step, index) in steps" :key="index">
+      <div v-for="(step, index) in steps" :key="index" :class="bodyContentStyle">
         <transition
           name="move"
-          enter-active-class="animate__animated animate__bounceIn"
+          enter-active-class="animate__animated animate__fadeIn"
         >
-          <div v-if="step === current.value" :key="'step-container-' + index">
-            <slot
-              :name="`step-${index + 1}`"
-              :step="step"
-              :move="{ next: next, previous: previous }"
-            />
-          </div>
+          <!-- Dynamics slots for Stepper content  -->
+          <slot
+            v-if="step === current.value"
+            :name="`step-${index + 1}`"
+            :step="step"
+            :move="{ next: next, previous: previous }"
+          />
         </transition>
       </div>
     </div>
@@ -64,7 +74,8 @@ export default {
       type: String,
       default: '30px'
     },
-    bodyStyle: String
+    bodyStyle: String,
+    bodyContentStyle: String
   },
   data () {
     return {
@@ -114,10 +125,11 @@ export default {
 <style lang="scss" scoped>
 $indexPadding: 10px;
 
-@mixin current-index{
-  > span {
-    color: $primary;
-  }
+/**
+  @mixins
+*/
+@mixin previous-index{
+  background-color: $positive;
 }
 
 @mixin next-index {
@@ -149,6 +161,9 @@ $indexPadding: 10px;
   }
 }
 
+/**
+  Styles
+*/
 .step {
   $indexPadding: 10px;
 
@@ -156,15 +171,7 @@ $indexPadding: 10px;
   align-items: baseline;
 
   &.previous > .step--index {
-    background-color: $positive;
-
-    > span {
-      color: white;
-    }
-  }
-
-  &.current > .step--index {
-    @include current-index;
+    @include previous-index;
   }
 
   &.next > .step--index {
@@ -182,9 +189,13 @@ $indexPadding: 10px;
     white-space: nowrap;
 
     padding: $indexPadding 0;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 
     flex-wrap: wrap;
+
+    > span{
+      color: $primary;
+    }
 
     > caption {
       margin-top: 20px;

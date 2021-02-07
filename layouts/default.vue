@@ -46,7 +46,7 @@ $footerHeight: 100px;
 }
 
 .select{
-  @extend .vertical--center;
+  @extend %vertical--center;
 
   i{
     height: 100%;
@@ -71,7 +71,7 @@ header {
   }
 
   a {
-    @extend .vertical--center;
+    @extend %vertical--center;
     color: black;
     text-decoration: none;
 
