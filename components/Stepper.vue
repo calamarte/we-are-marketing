@@ -67,7 +67,7 @@ export default {
       type: Array,
       required: true,
       validator: (value) => {
-        return value.every(step => typeof step === 'string')
+        return value.length && value.every(step => typeof step === 'string')
       }
     },
     splitterWidth: {
