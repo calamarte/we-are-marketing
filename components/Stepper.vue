@@ -35,7 +35,9 @@
             v-if="index < steps.length - 1"
             :style="{ width: splitterWidth }"
             class="step--splitter"
-          />
+          >
+            <div />
+          </div>
         </div>
       </div>
     </div>
@@ -165,10 +167,10 @@ $indexPadding: 10px;
   Styles
 */
 .step {
+  $indexSize: 40px;
   $indexPadding: 10px;
 
   display: flex;
-  align-items: baseline;
 
   &.previous > .step--index {
     @include previous-index;
@@ -179,11 +181,10 @@ $indexPadding: 10px;
   }
 
   &--index {
-    width: 40px;
-    height: 40px;
+    width: $indexSize;
+    height: $indexSize;
     background: $secondary;
     border-radius: 100%;
-    opacity: 0.8;
 
     text-align: center;
     white-space: nowrap;
@@ -205,10 +206,17 @@ $indexPadding: 10px;
   }
 
   &--splitter {
-    height: 1px;
-    background-color: black;
-    border-radius: 10px;
-    opacity: 0.2;
+    height: $indexSize;
+    @extend %center;
+
+    > div{
+      width: 100%;
+      height: 1px;
+      background-color: black;
+      border-radius: 10px;
+      opacity: 0.2;
+    }
+
     margin: 0 20px;
   }
 

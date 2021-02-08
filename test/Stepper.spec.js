@@ -1,7 +1,10 @@
 import { mount } from '@vue/test-utils'
 import Stepper from '@/components/Stepper.vue'
 
+// Auxiliar vars
 const words = ['Rock', 'Paper', 'Scissor', 'Entelgy', 'Stepper', 'Pepino', 'Valencia', 'COVID']
+
+// Auxiliar functions
 function randomWord () {
   return words[Math.floor(Math.random() * words.length)]
 }
@@ -12,6 +15,7 @@ function fill (array, length) {
   }
 }
 
+// Test
 describe('Stepper', () => {
   test('is a Vue instance', () => {
     const wrapper = mount(Stepper, {
@@ -24,7 +28,7 @@ describe('Stepper', () => {
   })
 
   const steps = []
-  const stepsLength = 20
+  const stepsLength = words.length
   fill(steps, stepsLength)
 
   const wrapper = mount(Stepper, {
@@ -36,7 +40,7 @@ describe('Stepper', () => {
 
   test('Props validation', () => {
     const negate = [
-      [], [1], [{}], [[]]
+      [], [1], [{}], [[]] // Try more
     ]
 
     const validator = vue.$options.props.steps.validator
