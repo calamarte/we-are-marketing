@@ -21,7 +21,7 @@
         </div>
       </div>
     </header>
-    <main class="center">
+    <main>
       <Nuxt />
     </main>
 

@@ -27,10 +27,9 @@ div#__nuxt,
 
 
 body{
-    background-color: $secondary;
+    background-color: $background-color;
     font-family: 'Roboto', sans-serif;
 }
-
 
 label{
     font-size: .8em;
@@ -49,14 +48,27 @@ input[type=text]{
 }
 
 input[type=button],button{
-    padding: 7px;
+    $padding: 7px;
+
+    padding: $padding;
     color: $primary;
     background-color: $secondary;
     border: none;
     border-radius: 25px;
     outline: none;
 
-    &:hover:not(&:disabled){
+    cursor: pointer;
+
+    &.outline{
+        $borderSize: 1px;
+
+        color: $secondary;
+        background-color: $primary;
+        border: $borderSize solid $secondary;
+        padding: #{$padding - $borderSize};
+    }
+
+    &:hover:not(:disabled){
         box-shadow: 0px 15px 20px $shadow;
         transform: translateY(-2px);
     }

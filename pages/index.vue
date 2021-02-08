@@ -1,61 +1,68 @@
 <template>
   <div class="main">
-    <Stepper :steps="steps" splitter-width="90px" body-style="card" body-content-style="horizontal--center">
-      <template #step-1="{move}">
-        <div class="user-data center">
-          <h2>Mis Datos</h2>
-          <p class="text-center">
-            Revisa los datos y completa aquellos pendientes antes de continuar el proceso
-          </p>
-
-          <form class="center">
-            <InputText id="username" v-model="user.name" label="Nombre" />
-            <InputText id="user-lastname" v-model="user.lastname" label="Apellidos" />
-          </form>
-
-          <button type="button" :disabled="!dataIsValid" @click="move.next">
-            Continuar
-          </button>
-        </div>
-      </template>
-
-      <template #step-2="{move}">
-        <!-- Pendiente de Pago -->
-        <div v-if="!payData" class="user-data center">
-          <h2>Pago del producto</h2>
-          <p class="text-center">
-            Una vez efectuado el pago del producto, recibirás un email con los detalles de la compro.
-          </p>
-
-          <div>
-            <h3>Tarjeta de crédito</h3>
-            <p>
-              Se dirigió a uno plataforma de pago.
-              Se trato de un proceso seguro.
-              Puede que lo validación del pago torde 24 horas en completarse
+    <section>
+      <Stepper :steps="steps" splitter-width="90px" body-style="card" body-content-style="horizontal--center">
+        <template #step-1="{move}">
+          <div class="user-data center">
+            <h2>Mis Datos</h2>
+            <p class="text-center">
+              Revisa los datos y completa aquellos pendientes antes de continuar el proceso
             </p>
 
-            <div class="credit-card">
-              <img src="~/assets/images/visa.svg" alt="">
-              <img src="~/assets/images/master.svg" alt="">
+            <form class="center">
+              <InputText id="username" v-model="user.name" label="Nombre" />
+              <InputText id="user-lastname" v-model="user.lastname" label="Apellidos" />
+            </form>
+
+            <div class="buttons">
+              <button type="button" :disabled="!dataIsValid" @click="move.next">
+                Continuar
+              </button>
+            </div>
+          </div>
+        </template>
+
+        <template #step-2="{move}">
+          <!-- Pendiente de Pago -->
+          <div v-if="!payData" class="user-data center">
+            <h2>Pago del producto</h2>
+            <p class="text-center">
+              Una vez efectuado el pago del producto,
+              recibirás un email con los detalles de la compro.
+            </p>
+
+            <section class="tarjeta">
+              <h3>Tarjeta de crédito</h3>
+              <p>
+                Se dirigió a uno plataforma de pago.
+                Se trato de un proceso seguro.
+                Puede que lo validación del pago torde 24 horas en completarse
+              </p>
+
+              <div class="credit-card">
+                <img src="~/assets/images/visa.png" alt="Imagen de la tarjeta Visa">
+                <img src="~/assets/images/master.png" alt="Imagen de la tarjeta Mastercard">
+              </div>
+            </section>
+
+            <div class="buttons">
+              <button type="button" class="outline" @click="move.previous">
+                Anterior
+              </button>
+
+              <button type="button" @click="pay">
+                Pagar
+              </button>
             </div>
           </div>
 
-          <button type="button" @click="move.previous">
-            Cancelar
-          </button>
-
-          <button type="button" @click="pay">
-            Pagar
-          </button>
-        </div>
-
-        <!-- Pagado -->
-        <div v-else>
-          {{ payData }}
-        </div>
-      </template>
-    </Stepper>
+          <!-- Pagado -->
+          <div v-else>
+            {{ payData }}
+          </div>
+        </template>
+      </Stepper>
+    </section>
   </div>
 </template>
 
@@ -84,7 +91,7 @@ export default {
       this.loading = true
       this.$axios.$get('http://www.mocky.io/v2/5e3d41272d00003f7ed95c09')
         .then((res) => { this.payData = res })
-        .catch(err => console.log(err))
+        .catch(err => console.warn(err))
         .finally(() => {
           this.loading = false
         })
@@ -97,7 +104,16 @@ export default {
 <style lang="scss" scoped>
 
 .main{
-  width: 70%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+
+  > section{
+    height: 50vh;
+    width: 50vw;
+    margin-top: 5%;
+  }
 }
 
 .user-data,form{
@@ -107,12 +123,39 @@ export default {
 
 .user-data{
   width: 50%;
+  padding: 40px 0;
+
+  > *{
+    padding: 10px 0;
+  }
+
+  form{
+    margin: 10px 0;
+
+    > .input{
+      padding: 15px 0;
+    }
+  }
+
+  .buttons{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
 }
 
-.credit-card{
-  img{
-    width: 50px;
-    height: 60px;
+.tarjeta{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+
+  .credit-card{
+    img{
+      height: 30px;
+    }
   }
 
 }
