@@ -1,5 +1,5 @@
 <template>
-  <div class="button" :class="{reverse: iconLeft, disabled: disabled}">
+  <div class="button" :class="{reverse: iconLeft, disabled: disabled}" @click="parentClick">
     <button type="button" :disabled="disabled" @click="$emit('click')">
       {{ label }}
     </button>
@@ -26,6 +26,13 @@ export default {
     label: String,
     styleClass: String
 
+  },
+  methods: {
+    parentClick () {
+      if (!this.disabled) {
+        this.$emit('click')
+      }
+    }
   }
 }
 </script>

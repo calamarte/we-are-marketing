@@ -2,6 +2,7 @@
   <div class="main">
     <section>
       <Stepper :steps="steps" splitter-width="90px" body-style="card" body-content-style="horizontal--center">
+        <!-- Step 1 Formulario validable -->
         <template #step-1="{move}">
           <div class="user-data center">
             <h2>Mis Datos</h2>
@@ -20,6 +21,7 @@
           </div>
         </template>
 
+        <!-- Step 2 Proceso de Pago -->
         <template #step-2="{move}">
           <!-- Pendiente de Pago -->
           <div v-if="!payData" class="pay center">
@@ -56,7 +58,7 @@
 
           <!-- Pagado -->
           <div v-else class="paid">
-            <!-- Icon -->
+            <i class="diploma fas fa-money-bill-wave" />
             <h3>{{ payData.title }}</h3>
             <p>{{ payData.text }}</p>
           </div>
@@ -104,6 +106,8 @@ export default {
 
 <style lang="scss" scoped>
 
+$iconColor: #de3931;
+
 .main{
   width: 100%;
   height: 100%;
@@ -124,6 +128,7 @@ export default {
   width: 100%;
 }
 
+// Step 1 Formulario
 .user-data{
   width: 50%;
   padding: 40px 0;
@@ -147,22 +152,39 @@ export default {
   }
 }
 
+//Step 2 Pago
 .pay{
   @extend .user-data;
+  padding-top: 20px;
+
+  > p{
+    white-space: nowrap;
+  }
 
   .buttons{
+    margin-top: 5px;
     display: flex;
     justify-content: space-between;
   }
 }
 
 .tarjeta{
+  $borderSize: 2px;
+
+  margin-top: 5px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   border-radius: 5px;
-  border: 1px solid lightgrey;
+  border: $borderSize solid lightgrey;
+
+  padding: #{20px - $borderSize} #{43px - $borderSize};
+
+   > * {
+    margin: 10px 0;
+  }
 
   .credit-card{
     img{
@@ -178,7 +200,7 @@ export default {
 
   position: relative;
 
-  color: #de3931;
+  color: $iconColor;
 
   i{
     position: absolute;
@@ -201,9 +223,15 @@ export default {
 
 }
 
+//Step 2.2 Pago Finalizado
 .paid{
   @extend .user-data;
   text-align: center;
+
+  i{
+    font-size: 3em;
+    color: $iconColor;
+  }
 }
 
 </style>

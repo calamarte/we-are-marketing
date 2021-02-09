@@ -50,10 +50,6 @@ export default {
       padding: 0 5px;
       font-size: inherit;
       font-weight: inherit;
-
-      > option{
-          font-size: 20em;
-      }
   }
 
    > i{
