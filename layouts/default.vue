@@ -3,23 +3,13 @@
     <header>
       <Logo />
 
-      <div class="vertical--center nav-bar">
-        <a href="#"> <i class="material-icons"> description </i> Ayuda </a>
-        <a href="#"> <i class="material-icons"> person_outline </i> Sign in </a>
+      <nav class="vertical--center nav-bar">
+        <IcoLink href="#" icon="far fa-file-alt" text="Ayuda" />
+        <IcoLink href="#" icon="far fa-user" text="Sign in" />
 
         <!-- Lang Selector -->
-        <div class="select">
-          <select class="flat">
-            <option value="es">
-              ES
-            </option>
-            <option value="en">
-              EN
-            </option>
-          </select>
-          <i class="material-icons"> arrow_drop_down </i>
-        </div>
-      </div>
+        <LangSelector />
+      </nav>
     </header>
     <main>
       <Nuxt />
@@ -37,22 +27,6 @@
 $headerHeight: 50px;
 $footerHeight: 100px;
 
-.flat {
-  border: none;
-  outline: none;
-  background-color: $primary;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-.select{
-  @extend %vertical--center;
-
-  i{
-    height: 100%;
-  }
-}
-
 header {
   width: 100%;
   height: $headerHeight;
@@ -64,22 +38,13 @@ header {
   .nav-bar {
     height: 100%;
     text-transform: uppercase;
+    font-weight: 700;
 
     > * {
       margin: 0 20px;
     }
   }
 
-  a {
-    @extend %vertical--center;
-    color: black;
-    text-decoration: none;
-
-    &:link,
-    &:visited {
-      color: "inherit";
-    }
-  }
 }
 
 main {

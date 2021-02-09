@@ -1,6 +1,6 @@
 <template>
   <div class="button" :class="{reverse: iconLeft, disabled: disabled}">
-    <button type="button" :disabled="disabled" @click="$emit('click')" v-on="$listeners">
+    <button type="button" :disabled="disabled" @click="$emit('click')">
       {{ label }}
     </button>
 

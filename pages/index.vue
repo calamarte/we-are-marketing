@@ -30,6 +30,11 @@
             </p>
 
             <section class="tarjeta">
+              <div class="card-icon">
+                <i class="back fas fa-id-card" />
+                <i class="front far fa-credit-card" />
+              </div>
+
               <h3>Tarjeta de crédito</h3>
               <p>
                 Se dirigió a uno plataforma de pago.
@@ -82,6 +87,7 @@ export default {
     }
   },
   methods: {
+    // Proceso de pago
     pay () {
       this.loading = true
       this.$axios.$get('http://www.mocky.io/v2/5e3d41272d00003f7ed95c09')
@@ -162,6 +168,35 @@ export default {
     img{
       height: 30px;
     }
+  }
+
+}
+
+.card-icon{
+  width: 75px;
+  height: 70px;
+
+  position: relative;
+
+  color: #de3931;
+
+  i{
+    position: absolute;
+    font-size: 3em;
+  }
+
+  .back{
+    z-index: 1;
+    top: 0;
+    left: 0;
+  }
+
+  .front{
+    background-color: $primary;
+    border-left: 2px solid $primary;
+    z-index: 2;
+    bottom: 0;
+    right: 0;
   }
 
 }
