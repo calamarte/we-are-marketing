@@ -15,16 +15,14 @@
             </form>
 
             <div class="buttons">
-              <button type="button" :disabled="!dataIsValid" @click="move.next">
-                Continuar
-              </button>
+              <IcoButton label="Continuar" icon="far fa-arrow-alt-circle-right" :disabled="!dataIsValid" @click="move.next" />
             </div>
           </div>
         </template>
 
         <template #step-2="{move}">
           <!-- Pendiente de Pago -->
-          <div v-if="!payData" class="user-data center">
+          <div v-if="!payData" class="pay center">
             <h2>Pago del producto</h2>
             <p class="text-center">
               Una vez efectuado el pago del producto,
@@ -46,19 +44,16 @@
             </section>
 
             <div class="buttons">
-              <button type="button" class="outline" @click="move.previous">
-                Anterior
-              </button>
-
-              <button type="button" @click="pay">
-                Pagar
-              </button>
+              <IcoButton label="Anterior" class="outline" icon-left icon="far fa-arrow-alt-circle-left" @click="move.previous" />
+              <IcoButton label="Pagar" icon="far fa-arrow-alt-circle-right" @click="pay" />
             </div>
           </div>
 
           <!-- Pagado -->
-          <div v-else>
-            {{ payData }}
+          <div v-else class="paid">
+            <!-- Icon -->
+            <h3>{{ payData.title }}</h3>
+            <p>{{ payData.text }}</p>
           </div>
         </template>
       </Stepper>
@@ -108,10 +103,12 @@ export default {
   height: 100%;
   display: flex;
   justify-content: center;
+  overflow: auto;
+  padding: 5px;
 
   > section{
-    height: 50vh;
     width: 50vw;
+    height: 100%;
     margin-top: 5%;
   }
 }
@@ -144,6 +141,15 @@ export default {
   }
 }
 
+.pay{
+  @extend .user-data;
+
+  .buttons{
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
 .tarjeta{
   display: flex;
   flex-direction: column;
@@ -158,6 +164,11 @@ export default {
     }
   }
 
+}
+
+.paid{
+  @extend .user-data;
+  text-align: center;
 }
 
 </style>

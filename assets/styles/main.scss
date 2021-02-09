@@ -28,7 +28,7 @@ div#__nuxt,
 
 body{
     background-color: $background-color;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Munish', sans-serif;
 }
 
 label{
@@ -47,7 +47,7 @@ input[type=text]{
     }
 }
 
-input[type=button],button{
+.button{
     $padding: 7px;
 
     padding: $padding;
@@ -68,12 +68,12 @@ input[type=button],button{
         padding: #{$padding - $borderSize};
     }
 
-    &:hover:not(:disabled){
+    &:hover:not(:disabled):not(.disabled){
         box-shadow: 0px 15px 20px $shadow;
         transform: translateY(-2px);
     }
 
-    &:disabled{
+    &:disabled, &.disabled{
         opacity: .7;
         cursor: not-allowed;
     }

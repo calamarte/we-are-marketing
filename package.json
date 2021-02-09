@@ -12,11 +12,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.2",
     "@nuxtjs/axios": "^5.12.5",
     "animate.css": "^4.1.1",
     "core-js": "^3.8.3",
-    "nuxt": "^2.14.12",
-    "nuxt-material-design-icons": "^1.0.4"
+    "nuxt": "^2.14.12"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^5.0.0",

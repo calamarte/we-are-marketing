@@ -25,7 +25,7 @@
           <!-- Rest Index -->
           <div v-if="position(index) !== 'current'" class="step--index horizontal--center">
             <span v-if="position(index) === 'next'">{{ index + 1 }}</span>
-            <span v-else class="material-icons">done</span>
+            <i v-else class="fas fa-check" />
             <caption>
               {{ step }}
             </caption>
@@ -141,7 +141,7 @@ $indexPadding: 10px;
   border: $borderSize solid $secondary;
   padding: $indexPadding - $borderSize 0;
 
-  > span {
+  > span, > i {
     color: $secondary;
   }
 
@@ -194,7 +194,7 @@ $indexPadding: 10px;
 
     flex-wrap: wrap;
 
-    > span{
+    > span, > i{
       color: $primary;
     }
 

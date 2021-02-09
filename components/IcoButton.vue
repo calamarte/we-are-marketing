@@ -1,0 +1,59 @@
+<template>
+  <div class="button" :class="{reverse: iconLeft, disabled: disabled}">
+    <button type="button" :disabled="disabled" @click="$emit('click')" v-on="$listeners">
+      {{ label }}
+    </button>
+
+    <i :class="icon" />
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    icon: {
+      type: String,
+      required: true
+    },
+    iconLeft: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    label: String,
+    styleClass: String
+
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+
+.reverse{
+    flex-direction: row-reverse;
+}
+
+.button{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+
+    padding: 5 10px;
+
+    button{
+        border: none;
+        cursor: inherit;
+        color: inherit;
+        outline: inherit;
+        background-color: inherit;
+    }
+
+    > *{
+        padding: 0 5px;
+    }
+
+}
+</style>

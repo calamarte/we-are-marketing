@@ -28,6 +28,7 @@ export default {
   css: [
     '~/assets/fonts.css',
     '~/node_modules/animate.css/animate.min.css', // CSS animations lib
+    '~/node_modules/@fortawesome/fontawesome-free/css/all.min.css',
     '~/assets/styles/main.scss'
   ],
 
@@ -55,8 +56,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/style-resources',
-    'nuxt-material-design-icons'
+    '@nuxtjs/style-resources'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
