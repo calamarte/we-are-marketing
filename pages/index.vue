@@ -52,7 +52,7 @@
 
             <div class="buttons">
               <IcoButton label="Anterior" class="outline" icon-left icon="far fa-arrow-alt-circle-left" @click="move.previous" />
-              <IcoButton label="Pagar" icon="far fa-arrow-alt-circle-right" @click="pay" />
+              <IcoButton label="Pagar" icon="far fa-arrow-alt-circle-right" @click="pay(move)" />
             </div>
           </div>
 
@@ -90,13 +90,14 @@ export default {
   },
   methods: {
     // Proceso de pago
-    pay () {
+    pay (move) {
       this.loading = true
       this.$axios.$get('http://www.mocky.io/v2/5e3d41272d00003f7ed95c09')
         .then((res) => { this.payData = res })
         .catch(err => console.warn(err))
         .finally(() => {
           this.loading = false
+          move.next()
         })
     }
   }

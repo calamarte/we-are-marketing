@@ -8,12 +8,21 @@
           :key="index"
           class="step"
           :class="{
-            previous: position(index) === 'previous',
-            next: position(index) === 'next',
+            previous: end || position(index) === 'previous',
+            next: !end && position(index) === 'next',
           }"
         >
+          <!-- Rest Index -->
+          <div v-if="end || position(index) !== 'current'" class="step--index horizontal--center">
+            <span v-if="!end && position(index) === 'next'">{{ index + 1 }}</span>
+            <i v-else class="fas fa-check" />
+            <caption>
+              {{ step }}
+            </caption>
+          </div>
+
           <!-- Current Index Animated -->
-          <transition name="move" enter-active-class="animate__animated animate__bounceIn">
+          <transition v-else name="move" enter-active-class="animate__animated animate__bounceIn">
             <div v-if="position(index) === 'current'" class="step--index horizontal--center">
               <span>{{ index + 1 }}</span>
               <caption>
@@ -21,15 +30,6 @@
               </caption>
             </div>
           </transition>
-
-          <!-- Rest Index -->
-          <div v-if="position(index) !== 'current'" class="step--index horizontal--center">
-            <span v-if="position(index) === 'next'">{{ index + 1 }}</span>
-            <i v-else class="fas fa-check" />
-            <caption>
-              {{ step }}
-            </caption>
-          </div>
 
           <div
             v-if="index < steps.length - 1"
@@ -84,7 +84,8 @@ export default {
       current: {
         index: 0,
         value: ''
-      }
+      },
+      end: false
     }
   },
   created () {
@@ -111,6 +112,8 @@ export default {
       if (this.current.index < this.steps.length - 1) {
         const index = ++this.current.index
         this.current.value = this.steps[index]
+      } else {
+        this.end = true
       }
     },
 
@@ -118,6 +121,7 @@ export default {
       if (this.current.index > 0) {
         const index = --this.current.index
         this.current.value = this.steps[index]
+        this.end = false
       }
     }
   }
