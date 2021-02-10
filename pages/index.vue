@@ -1,13 +1,13 @@
 <template>
   <div class="main">
     <section>
-      <Stepper :steps="steps" splitter-width="90px" body-style="card" body-content-style="horizontal--center">
+      <Stepper :steps="steps" splitter-width="90px" class="stepper" body-style="card" body-content-style="horizontal--center">
         <!-- Step 1 Formulario validable -->
         <template #step-1="{move}">
           <div class="user-data center">
             <h2>Mis Datos</h2>
             <p class="text-center">
-              Revisa los datos y completa aquellos pendientes antes de continuar el proceso
+              Revisa los datos y completa aquellos pendientes antes de continuar el proceso.
             </p>
 
             <form class="center">
@@ -28,7 +28,7 @@
             <h2>Pago del producto</h2>
             <p class="text-center">
               Una vez efectuado el pago del producto,
-              recibirás un email con los detalles de la compro.
+              recibirás un email con los detalles de la compra.
             </p>
 
             <section class="tarjeta">
@@ -39,9 +39,9 @@
 
               <h3>Tarjeta de crédito</h3>
               <p>
-                Se dirigió a uno plataforma de pago.
-                Se trato de un proceso seguro.
-                Puede que lo validación del pago torde 24 horas en completarse
+                Se redirigirá a uno plataforma de pago.
+                Se trata de un proceso seguro.
+                Puede que la validación del pago tarde 24 horas en completarse.
               </p>
 
               <div class="credit-card">
@@ -109,6 +109,10 @@ export default {
 
 $iconColor: #de3931;
 
+//Responsive
+$breakpoint-table: 1420px;
+$breakpoint-smartphone: 650px;
+
 .main{
   width: 100%;
   height: 100%;
@@ -119,8 +123,7 @@ $iconColor: #de3931;
 
   > section{
     width: 50vw;
-    height: 100%;
-    margin-top: 5%;
+    height: auto;
   }
 }
 
@@ -233,6 +236,39 @@ $iconColor: #de3931;
     font-size: 3em;
     color: $iconColor;
   }
+}
+
+//Responsive
+@media(max-width: $breakpoint-table){
+  .main{
+
+    .pay > p {
+      white-space: inherit;
+    }
+
+    > section{
+      width: 75vw;
+
+      .user-data{
+        width: 70%;
+      }
+
+    }
+  }
+}
+
+@media(max-width: $breakpoint-smartphone){
+  .main{
+
+    > section{
+      width: 100vw;
+
+      .user-data{
+        width: 95%;
+      }
+    }
+  }
+
 }
 
 </style>

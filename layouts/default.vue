@@ -24,6 +24,9 @@
 
 <style lang="scss" scoped>
 
+//Responsive
+$breakpoint: 565px;
+
 $headerHeight: 50px;
 $footerHeight: 100px;
 
@@ -66,6 +69,33 @@ footer{
   caption{
     opacity: .2;
     font-size: .5em;
+  }
+
+}
+
+//Responsive
+@media(max-width: $breakpoint){
+
+  $headerHeight: $headerHeight * 2;
+
+  header{
+    padding-top: 10px;
+    flex-direction: column;
+    height: $headerHeight;
+
+    .nav-bar{
+      display: flex;
+      flex-wrap: wr;
+    }
+  }
+
+  main{
+    height: calc(100% - #{$headerHeight + $footerHeight});
+  }
+
+  footer{
+    flex-direction: column-reverse;
+    align-items: center;
   }
 
 }
