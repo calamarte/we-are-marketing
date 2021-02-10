@@ -1,7 +1,7 @@
 @import 'variables';
 
 
-$helpClasse: vertical--center,card,horizontal--center,center,text-center,full-width,full-size;
+$helpClasse: vertical--center,card,horizontal--center,center,text-center,full-width,full-size,loading-container;
 
 @mixin generateClasses {
     @each $class in $helpClasse{
@@ -12,7 +12,9 @@ $helpClasse: vertical--center,card,horizontal--center,center,text-center,full-wi
 
 }
  
-
+%loading-container{
+    position: relative;
+}
 
 %vertical--center{
     display: flex;

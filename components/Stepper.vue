@@ -22,8 +22,8 @@
           </div>
 
           <!-- Current Index Animated -->
-          <transition v-else name="move" enter-active-class="animate__animated animate__bounceIn">
-            <div v-if="position(index) === 'current'" class="step--index horizontal--center">
+          <transition name="move" enter-active-class="animate__animated animate__bounceIn">
+            <div v-if="!end && position(index) === 'current'" class="step--index horizontal--center">
               <span>{{ index + 1 }}</span>
               <caption>
                 {{ step }}
@@ -43,7 +43,8 @@
     </div>
 
     <!-- Body -->
-    <div class="stepper--body" :class="bodyStyle">
+    <div class="stepper--body loading-container" :class="bodyStyle">
+      <Loading v-if="loading" />
       <div v-for="(step, index) in steps" :key="index" :class="bodyContentStyle">
         <transition
           name="move"
@@ -75,6 +76,10 @@ export default {
     splitterWidth: {
       type: String,
       default: '30px'
+    },
+    loading: {
+      type: Boolean,
+      default: false
     },
     bodyStyle: String,
     bodyContentStyle: String
@@ -136,6 +141,7 @@ $indexPadding: 10px;
 */
 @mixin previous-index{
   background-color: $positive;
+  opacity: .9;
 }
 
 @mixin next-index {
@@ -190,6 +196,7 @@ $indexPadding: 10px;
     background: $secondary;
     border-radius: 100%;
 
+    font-weight: bold;
     text-align: center;
     white-space: nowrap;
 

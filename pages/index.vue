@@ -1,7 +1,14 @@
 <template>
   <div class="main">
     <section>
-      <Stepper :steps="steps" splitter-width="90px" class="stepper" body-style="card" body-content-style="horizontal--center">
+      <Stepper
+        :steps="steps"
+        :loading="loading"
+        splitter-width="90px"
+        class="stepper"
+        body-style="card"
+        body-content-style="horizontal--center"
+      >
         <!-- Step 1 Formulario validable -->
         <template #step-1="{move}">
           <div class="user-data center">
@@ -22,7 +29,7 @@
         </template>
 
         <!-- Step 2 Proceso de Pago -->
-        <template #step-2="{move}">
+        <template #step-2="{move}" style="postion:relative">
           <!-- Pendiente de Pago -->
           <div v-if="!payData" class="pay center">
             <h2>Pago del producto</h2>
@@ -93,12 +100,12 @@ export default {
     pay (move) {
       this.loading = true
       this.$axios.$get('http://www.mocky.io/v2/5e3d41272d00003f7ed95c09')
-        .then((res) => { this.payData = res })
-        .catch(err => console.warn(err))
-        .finally(() => {
-          this.loading = false
+        .then((res) => {
+          this.payData = res
           move.next()
         })
+        .catch(err => console.warn(err))
+        .finally(() => { this.loading = false })
     }
   }
 
@@ -192,6 +199,7 @@ $breakpoint-smartphone: 650px;
 
   .credit-card{
     img{
+      border-radius: 5px;
       height: 30px;
     }
   }
