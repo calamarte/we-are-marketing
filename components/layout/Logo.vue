@@ -1,3 +1,7 @@
+/**
+* Logo de la web
+*/
+
 <template>
   <div class="container">
     <div class="title">

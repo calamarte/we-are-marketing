@@ -98,14 +98,16 @@ export default {
   methods: {
     // Proceso de pago
     pay (move) {
+      /* eslint-disable no-console */
       this.loading = true
-      this.$axios.$get('http://www.mocky.io/v2/5e3d41272d00003f7ed95c09')
+      this.$axios.$get('5e3d41272d00003f7ed95c09')
         .then((res) => {
           this.payData = res
           move.next()
         })
         .catch(err => console.warn(err))
         .finally(() => { this.loading = false })
+        /* eslint-enable no-console */
     }
   }
 

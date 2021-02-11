@@ -1,3 +1,7 @@
+/**
+* Stepper permite separar la interacción del usuario en diferentes pasos
+*/
+
 <template>
   <div class="stepper full-size">
     <!-- Header -->
@@ -81,8 +85,14 @@ export default {
       type: Boolean,
       default: false
     },
-    bodyStyle: String,
-    bodyContentStyle: String
+    bodyStyle: {
+      type: String,
+      default: ''
+    },
+    bodyContentStyle: {
+      type: String,
+      default: ''
+    }
   },
   data () {
     return {

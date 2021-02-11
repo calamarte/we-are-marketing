@@ -1,3 +1,7 @@
+/**
+* Selector de idiomas
+*/
+
 <template>
   <div class="select">
     <select v-model="selected" class="flat" @click="$emit('click')" @change="changeLang">
@@ -25,7 +29,9 @@ export default {
   methods: {
     // Cambio de idioma
     changeLang () {
+      /* eslint-disable no-console */
       console.log('Cambiando a ' + this.selected)
+      /* eslint-enable no-console */
     }
   }
 

@@ -1,3 +1,7 @@
+/**
+* Label + Input enlazado
+*/
+
 <template>
   <div :id="id" class="input full-width">
     <label v-if="label" :for="id">{{ label }}</label>
@@ -12,8 +16,14 @@ export default {
       type: String,
       required: true
     },
-    value: String,
-    label: String
+    value: {
+      type: String,
+      default: ''
+    },
+    label: {
+      type: String,
+      default: ''
+    }
   }
 }
 </script>

@@ -1,6 +1,6 @@
 //*
 * Para funcionar correctamente el contenedor del componenete
-* debe tener los styles de .loading-conatiner
+* debe tener los styles de .loading-container
 *//
 
 <template>

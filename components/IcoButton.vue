@@ -1,3 +1,7 @@
+/**
+* Boton preparado para mostrarse junto a un icono
+*/
+
 <template>
   <div class="button" :class="{reverse: iconLeft, disabled: disabled}" @click="parentClick">
     <button type="button" :disabled="disabled" @click="$emit('click')">
@@ -23,8 +27,14 @@ export default {
       type: Boolean,
       default: false
     },
-    label: String,
-    styleClass: String
+    label: {
+      type: String,
+      default: ''
+    },
+    styleClass: {
+      type: String,
+      default: ''
+    }
 
   },
   methods: {

@@ -1,3 +1,7 @@
+/**
+* Link preparado para mostrase con un icon
+*/
+
 <template>
   <div class="link">
     <i :class="icon" />
