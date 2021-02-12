@@ -56,8 +56,17 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '@nuxtjs/toast'
   ],
+
+  // Toast moduel https://www.npmjs.com/package/@nuxtjs/toast
+
+  toast: {
+    position: 'top-center',
+    duration: 15 * 1000, // 15"
+    className: 'notify'
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

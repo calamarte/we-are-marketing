@@ -1,0 +1,14 @@
+@import './variables';
+
+
+$backs: ("info": $info, "error": $negative, "succes": $positive);
+
+.notify.toasted{
+
+    @each $name, $color in $backs{
+        &.#{$name}{
+            background-color: $color !important;
+        }
+    }
+
+}

@@ -105,7 +105,10 @@ export default {
           this.payData = res
           move.next()
         })
-        .catch(err => console.warn(err))
+        .catch((err) => {
+          this.$toast.error('¡Algo a salido mal! 😥')
+          console.warn(err)
+        })
         .finally(() => { this.loading = false })
         /* eslint-enable no-console */
     }
